@@ -12,15 +12,16 @@ import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
-const UserDropDown = () => {
+import { signOut } from "@/lib/action/auth.action";
+const UserDropDown = ({user}: {user: User}) => {
 
     const router = useRouter();
 
     const handleSignOut = async () => {
+        await signOut();
         router.push("/signin");
     }
 
-    const user = { name: 'Makima', email: 'contact@email.com'};
 
     return (
         <DropdownMenu>
@@ -29,7 +30,7 @@ const UserDropDown = () => {
                     <Avatar className="h-8 w-8">
                         <AvatarImage src="https://cdn.rafled.com/anime-icons/images/DDwHWAVyQjlkytlpnv9MllYN4Hcp9MWL.jpg" />
                         <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                            {user.name[0]}
+                            {user.name}
                         </AvatarFallback>
                     </Avatar>
                     <div className="hidden md:flex flex-col items-start">
@@ -45,7 +46,7 @@ const UserDropDown = () => {
                         <Avatar className="h-10 w-10">
                             <AvatarImage src="https://cdn.rafled.com/anime-icons/images/DDwHWAVyQjlkytlpnv9MllYN4Hcp9MWL.jpg" />
                             <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                                {user.name[0]}
+                                {user.name}
                             </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
